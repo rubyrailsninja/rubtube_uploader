@@ -1,25 +1,46 @@
-# rubtube_uploader originale licence
-Redistribution and use in source and binary forms, with or without modification,
-are permitted provided that the following conditions are met:
+== rutube
 
-    * Redistributions of source code must retain the above copyright notice,
-      this list of conditions and the following disclaimer.
+Uploads video files into site http://rutube.ru
 
-    * Redistributions in binary form must reproduce the above copyright notice,
-      this list of conditions and the following disclaimer in the documentation
-      and/or other materials provided with the distribution.
+Make sure you have an account on that site.
+You can sign up on http://rutube.ru/accounts/register/
 
-    * Neither the name of the copyright owner nor the names of its contributors
-      may be used to endorse or promote products derived from this software
-      without specific prior written permission.
 
-THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
-ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
-WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
-DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR
-ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
-(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
-LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON
-ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
-SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+== Usage
+
+  require 'rubygems'
+  require 'rutube'
+
+  uploader = Rutube::Uploader.new('username@example.com', 'p455w0rd')
+  uploader.login  # returns true on success
+  result = uploader.upload :title => 'my winter holidays',
+                           :description => 'wonderful memories',
+                           :path => '/tmp/my_video.avi',
+                           :privacy => 'public'
+
+  # find URL of your video by the title
+  uploader.find_video_url('my winter holidays')
+  # find URL of your last uploaded and processed video file
+  uploader.latest_video_url
+
+
+== Requirements
+
+* json (tested with json-1.7.4 gem)
+* mechanize (tested with mechanize-2.5.1 gem)
+
+
+== Installation
+
+  gem install rutube
+
+
+== Author
+
+Iwakura Taro, taro@mail333.com
+
+
+== License
+
+Application is released under the terms of the BSD License.
+See the License file for details.
